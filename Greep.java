@@ -56,12 +56,26 @@ public class Greep extends Creature
         // check whether there's a tomato pile here
         TomatoPile tomatoes = (TomatoPile) getOneIntersectingObject(TomatoPile.class);
         if (tomatoes != null) {
+            callGreeps();
             loadTomato();
-            // Note: this attempts to load a tomato onto *another* Greep. It won't
-            // do anything if we are alone here.
+        }
+        else
+        {
+            move();
+            turn(3);
         }
     }
+    
 
+        public void callGreeps()
+    {
+        int dX = this.getX() - getX();
+        int dY = this.getY() - getY();
+        setRotation((int) (180 * Math.atan2(dY, dX) / Math.PI));
+    }
+
+    
+    
     /**
      * This method specifies the name of the author (for display on the result board).
      */
